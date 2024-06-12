@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/RC/Desktop/practice-sql.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1793"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,13:mainCollege_Data1"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="College_Data1" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="249"/><column index="2" value="55"/><column index="3" value="42"/><column index="4" value="54"/><column index="5" value="43"/><column index="6" value="76"/><column index="7" value="76"/><column index="8" value="66"/><column index="9" value="46"/><column index="10" value="64"/><column index="11" value="40"/><column index="12" value="62"/><column index="13" value="54"/><column index="14" value="93"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="iris_dataset" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="91"/><column index="2" value="86"/><column index="3" value="90"/><column index="4" value="85"/><column index="5" value="62"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">--Querying Tables
+Select * 
+from iris_dataset;
+
+--Select any column from TABLE
+select species
+from iris_dataset;
+
+--select two columns from TABLE
+select sepal_length, sepal_width
+from iris_dataset;
+
+--Get the first 5 elements in COLUMN
+select *
+from iris_dataset
+LIMIT 5;
+
+
+--Get all the listings of petal-width from 0.1 to 0.3
+select * 
+from iris_dataset
+WHERE petal_width BETWEEN 0.1 and 0.3;
+
+
+
+--Filtering on text data
+--get all the insights in Departments
+SELECT *
+FROM College_Data1
+WHERE Uni_Names = 'Adrian College';
+
+--Get the listings based in IT and CS
+
+SELECT * 
+from College_Data1
+WHERE Departments in ('CS', 'IT');
+
+
+--Get all the insights where Uni names starts with COllege in their names
+
+SELECT *
+FROM College_Data1
+WHERE Uni_Names LIKE 'Coll%' and Uni_Names not like 'Uni%';
+
+
+--Filtering on multiple columns
+--Filtering on departments and where Books are greater than 500
+SELECT * 
+from College_Data1
+WHERE Departments = 'Marketing' AND Books &gt; 500;
+
+--Filtering on Uni_names OR WHERE the Enroll = 200
+
+Select *
+from College_Data1
+WHERE Uni_Names = 'Grove City College' OR Enroll = 200;
+
+--Aggregating Data Functions
+--Simple aggregations
+-- Get the total Books available across Coolege DATABASE
+
+SELECT SUM(Top10perc) as sum_of_top10
+FROM College_Data1;
+
+--Get the average of any column in college DATABASE
+SELECT AVG(Expend) as average_exp
+FROM College_Data1;
+
+--Get the maximum value in Enroll
+SELECT MAX(Enroll) as Maximum_val
+FROM College_Data1;
+
+--Get the minimum VALUES
+SELECT MIN(Enroll) as min_val
+FROM College_Data1;
+
+--Grouping, Filtering, Sorting
+--Get the total number of Books from each department
+SELECT Departments, SUM(Books) as sum_of_books
+FROM College_Data1
+GROUP by Departments;
+
+--Get the average number of Top10perc for Private
+SELECT Private, AVG(Top10perc) as average_no_yes
+from College_Data1
+GROUP BY Private;
+
+--Get the maximum expend in Uni_Names
+SELECT Uni_Names, MAX(Expend) as max_Expend
+FROM College_Data1
+GROUP BY Uni_Names;
+
+--Get minimum values of departments in Terminal
+SELECT Departments, MIN(Terminal) as min_value
+FROM College_Data1
+GROUP BY Departments;
+
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
